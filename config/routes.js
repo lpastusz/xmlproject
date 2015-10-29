@@ -32,9 +32,12 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
+    '/': {
+        view: 'homepage'
+    },
+
+    'GET /import': "ImportDataController.importAllData",
+    'GET /testDbConnection' : "TestController.testDbConnection"
 
   /***************************************************************************
   *                                                                          *
