@@ -156,7 +156,7 @@ module.exports = {
 
         });        
 
-    }
+    },
 	
 	downloadZasilkovnaServices: function(callback) {
         var linkZasilkovnaServices = "http://www.zasilkovna.cz/api/v3/81b34cc11d28e3ed/branch.json";
@@ -298,8 +298,5 @@ module.exports = {
         });        
 
     }
-
-};
-
 
 };

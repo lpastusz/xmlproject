@@ -38,6 +38,7 @@ module.exports = {
                         if (err) { console.log(err); res.view('500'); }
 
                         res.json(result);
+						
 
                     });
 
