@@ -106,8 +106,6 @@ module.exports = {
 
                             totalOfficesInserted += result.inserted;
 
-                            console.log(result.inserted);
-
                             if (savedRowsCounter === rowsTotal) {
 
                                 var returnData = {};
@@ -154,149 +152,74 @@ module.exports = {
 
             return;
 
-        });        
-
-    },
-	
-	downloadZasilkovnaServices: function(callback) {
-        var linkZasilkovnaServices = "http://www.zasilkovna.cz/api/v3/81b34cc11d28e3ed/branch.json";
-
-        var http = require('http');
-        http.get(linkZasilkovnaServices, function(httpResponse) {
-            var data = "";
-
-            httpResponse.on('data', function (payload) {
-                data += payload;
-            });
-
-            httpResponse.on('error', function (error) {
-                callback(error, null);
-            });
-
-            httpResponse.on('end', function(){
-                callback(null, JSON.parse(data));
-            })
         });
+
     },
 
-    saveZasilkovnaServices: function(data, callback) {
 
-        var savedRowsCounter = 0;
-        var error = null;
+    saveZasilkovnaService: function(callback) {
 
-        data.data.forEach(function(row, index){
+        CollectionService.create({
+            serviceName     :  'Zasilkovna',
+            sourceLink      :  'http://www.zasilkovna.cz/api/v3/81b34cc11d28e3ed/branch.json',
+            actionFunction  :  'processZasilkovnaXML'
+        }).exec(function(err, insertedData){
 
-            CollectionService.create({
-                serviceName     :  row.name,
-                sourceLink      :  row.url,
-                actionFunction  :  'processZasilkovnaXML'
-            }).exec(function(err, insertedData){
-
-                if (err) error = err;
-
-                savedRowsCounter ++;
-
-                if (savedRowsCounter === data.data.length) {
-
-                    var returnData = {};
-                    returnData.inserted = savedRowsCounter;
-
-                    callback(error, returnData);
-
-                }
-            });
+            callback(err, insertedData);
 
         });
     },
 
 
     processZasilkovnaXML : function(callback) {
-        CollectionService.find({
+        CollectionService.findOne({
             actionFunction : 'processZasilkovnaXML'
-        }).exec(function(err, resultSet) {
+        }).exec(function(err, result) {
 
             if (err) { callback(err, null); }
 
             var http = require('http');
-            var rowsTotal = resultSet.length;
-            var totalOfficesInserted = 0;
+            var data = "";
+            var serviceId = result.id;
 
-            var savedRowsCounter = 0;
+            http.get(result.sourceLink, function(httpResponse) {
 
-            resultSet.forEach(function(row, index) {
+                httpResponse.on('data', function (payload) {
+                    data += payload;
+                });
 
-                var data = "";
+                httpResponse.on('error', function (error) {
+                    callback(error, null);
+                });
 
-                http.get(row.sourceLink, function(httpResponse) {
+                httpResponse.on('end', function(){
 
-                    httpResponse.on('data', function (payload) {
-                        data += payload;
-                    });
+                    data = JSON.parse(data);
 
-                    httpResponse.on('error', function (error) {
-                        callback(error, null);
-                    });
+                    var offices = new Array();
 
-                    httpResponse.on('end', function(){
-
-                        ImportDataService.processSingleZasilkovnaXML(JSON.parse(data), row.id, function(err, result) {
-
-                            if (err) callback(err, null);
-
-                            savedRowsCounter ++;
-
-                            totalOfficesInserted += result.inserted;
-
-                            console.log(result.inserted);
-
-                            if (savedRowsCounter === rowsTotal) {
-
-                                var returnData = {};
-                                returnData.inserted = totalOfficesInserted;
-
-                                callback(err, returnData);
-
-                                return;
-
-                            }
-
+                    for (var key in data.data)
+                    {
+                        offices.push({
+                            name            :  data.data[key].name,
+                            longitude       :  data.data[key].longitude,
+                            latitude        :  data.data[key].latitude,
+                            serviceName     :  serviceId
                         });
-                    })
+
+                    }
+
+                    CollectionOffice.create(offices).exec(function(err, insertedData){
+
+                        if (err) error = err;
+
+                        callback(null, { inserted : insertedData.length });
+
+                    });
+
                 });
 
             });
         });
-    },
-
-    processSingleZasilkovnaXML : function(data, serviceId, callback) {
-
-        var error = null;
-        var offices = [];
-
-        data.data.destination.forEach(function(row, index){
-
-            offices.push({
-                name            :  row.name,
-                longitude       :  row.gps.longitude,
-                latitude        :  row.gps.latitude,
-                serviceName     :  serviceId
-            });
-
-        });
-
-        CollectionOffice.create(offices).exec(function(err, insertedData){
-
-            if (err) error = err;
-
-            var returnData = {};
-            returnData.inserted = data.data.destination.length;
-
-            callback(error, returnData);
-
-            return;
-
-        });        
-
     }
-
 };

@@ -1,9 +1,16 @@
+var isUlozenkaDone = false;
+var isZasilkovnaDone = false;
+var returnData = {};
+
 module.exports = {
+
+
     importAllData: function (req, res) {
-        
+
         ImportDataService.removeDatabaseRecords(function(err) {
 
             if (err) { console.log(err); res.view('500'); }
+
 
             ImportDataService.downloadUlozenkaServices(function(err, ulozenkaServicesFeed) {
 
@@ -13,41 +20,37 @@ module.exports = {
 
                     if (err) { console.log(err); res.view('500'); }
 
-                    ImportDataService.processUlozenkaXML(function(err, result) {
+                    ImportDataService.processUlozenkaXML(function(err, resultUlozenka) {
 
                         if (err) { console.log(err); res.view('500'); }
 
-                        res.json(result);
+                        ImportDataService.saveZasilkovnaService(function(err, result) {
+
+                            if (err) { console.log(err); res.view('500'); }
+
+                            ImportDataService.processZasilkovnaXML(function(err, resultZasilkovna) {
+
+                                if (err) { console.log(err); res.view('500'); }
+
+                                return res.json( {
+                                    zasilkovna : resultZasilkovna.inserted,
+                                    ulozenka : resultUlozenka.inserted
+                                });
+
+                            });
+
 
                     });
 
                 });
 
             });
-			
-			ImportDataService.downloadZasilkovnaServices(function(err, ZasilkovnaServicesFeed) {
-
-                if (err) { console.log(err); res.view('500'); }
-
-                ImportDataService.saveZasilkovnaServices(ZasilkovnaServicesFeed, function(err, result) {
-
-                    if (err) { console.log(err); res.view('500'); }
-
-                    ImportDataService.processZasilkovnaXML(function(err, result) {
-
-                        if (err) { console.log(err); res.view('500'); }
-
-                        res.json(result);
-						
-
-                    });
-
-                });
 
             });
+
+
 
         });
-
 
   }
 };
