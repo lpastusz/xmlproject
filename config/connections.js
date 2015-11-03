@@ -68,7 +68,7 @@ module.exports.connections = {
 
   mongodbRemoteServer: {
      adapter: 'sails-mongo',
-     host: 'localhost',
+     host: 'ds048878.mongolab.com',
      port: 48878,
      user: 'weblogin',
      password: 'password',
