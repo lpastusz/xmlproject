@@ -66,6 +66,16 @@ module.exports.connections = {
      schema: true
   },
 
+  mongodbRemoteServer: {
+     adapter: 'sails-mongo',
+     host: 'localhost',
+     port: 48878,
+     user: 'weblogin',
+     password: 'password',
+     database: 'xmlproject',
+     schema: true
+  },
+
   /***************************************************************************
   *                                                                          *
   * PostgreSQL is another officially supported relational database.          *
