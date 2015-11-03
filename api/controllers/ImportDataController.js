@@ -33,8 +33,8 @@ module.exports = {
                                 if (err) { console.log(err); res.view('500'); }
 
                                 return res.json( {
-                                    zasilkovna : resultZasilkovna.inserted,
-                                    ulozenka : resultUlozenka.inserted
+                                    zasilkovna : resultZasilkovna,
+                                    ulozenka : resultUlozenka
                                 });
 
                             });
