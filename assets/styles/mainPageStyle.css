@@ -1,0 +1,45 @@
+html, body {
+  height: 100%;
+	background-color: #1187C8;
+}
+
+.row{
+}
+
+.container-fluid{
+	background-color: #1187C8;
+	height: 100%;
+}
+
+.header{
+	color: #00FFFF;
+	font-family: monospace;
+}
+
+#googleMap{
+	margin-left: 20px;
+	height:50%;
+}
+
+#services{
+	color: #00FFFF;
+	font-family: monospace;
+}
+
+
+
+.labels{
+	margin-left: 5px;
+	color: white;
+}
+
+#btnConfirm{
+	color: #1187C8;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.bold{
+	font-size: large;
+	color: #00FFFF;
+}

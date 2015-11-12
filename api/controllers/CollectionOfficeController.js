@@ -6,6 +6,12 @@
  */
 
 module.exports = {
-	
+
+
+		getOffices: function (req, res) {
+	    	var id = req.params('id');
+	    	
+	    	
+	    }	
 };
 

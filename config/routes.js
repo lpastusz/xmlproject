@@ -37,7 +37,8 @@ module.exports.routes = {
     },
 
     'GET /import': "ImportDataController.importAllData",
-    'GET /testDbConnection' : "TestController.testDbConnection"
+    'GET /testDbConnection' : "TestController.testDbConnection",
+    'GET /getOffifces/:id' : "CollectionOfficeController.getOffices"
 
   /***************************************************************************
   *                                                                          *
