@@ -7,11 +7,24 @@
 
 module.exports = {
 
+	getOffices: function (req, res) {
 
-		getOffices: function (req, res) {
-	    	var id = req.params('id');
-	    	
-	    	
-	    }	
+    	var id = req.param('servicesIds');
+
+        var ids = id.split(',');
+
+
+        var jsonIds = [];
+        for (var i = 0; i < ids.length; i++)
+        {
+            jsonIds.push({id : ids[i]});
+        }
+
+        CollectionService.find(jsonIds).populate('collectionOffices').exec(function(err, data) {
+            if (err) console.log(err);
+
+            res.json(data);
+        });
+
+    }
 };
-

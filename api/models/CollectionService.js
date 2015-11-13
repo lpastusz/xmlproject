@@ -25,6 +25,11 @@ module.exports = {
           type      :        'string',
           required  :         true,
           size      :         255
+      },
+
+      collectionOffices : {
+          collection: 'collectionOffice',
+          via : 'serviceName'
       }
 
   }

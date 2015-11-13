@@ -19,7 +19,7 @@
  */
 
 //app.use(express.static(__dirname + '/assets'));
-app.use(express.static(path.join(__dirname, 'assets')));
+//app.use(express.static(path.join(__dirname, 'assets')));
 
 // Ensure we're in the project directory, so relative paths work as expected
 // no matter where we actually lift from.

@@ -1,5 +1,5 @@
 {
-  "name": "xmlproject",
+  "name": "XMLProject",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
@@ -35,6 +35,5 @@
     "url": "git://github.com/anonymous node/sails user/XMLProject.git"
   },
   "author": "anonymous node/sails user",
-  "license": "ISC",
-  "devDependencies": {}
+  "license": "ISC"
 }
