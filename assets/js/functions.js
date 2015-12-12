@@ -142,6 +142,12 @@ function updateMap(services) {
                 map: map,
                 title:  office.name
             });
+
+            marker.addListener('click', function() {
+                $.colorbox({
+                    html: '<div style="background: #fff; padding: 20px;"><h2>'+service.serviceName+'</h2><h3>'+office.name+'</h3></div>'
+                });
+            });
             markers.push(marker);
         });
     });
