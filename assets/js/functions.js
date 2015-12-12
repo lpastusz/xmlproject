@@ -23,6 +23,9 @@ function initialize(services) {
 
       for (var i = -1; i < services.length; i++) {
 
+          if (i >= 0 && services[i].collectionOffices.length == 0)
+            continue;
+
             var div = document.createElement('div');
             var checkbox = document.createElement('input');
             var label = document.createElement('label');
