@@ -70,11 +70,7 @@ module.exports.connections = {
 
   mongodbRemoteServer: {
             adapter: 'sails-mongo',
-            host: 'bdbbogxnphqzfsv-mongodb.services.clever-cloud.com',
-            port: 27017,
-            user: 'uwequgx7u0jqwfo',
-            password: 'o6vdftXBfllxDcUEjC0a',
-            database: 'bdbbogxnphqzfsv'
+            url: 'mongodb://uwequgx7u0jqwfo:o6vdftXBfllxDcUEjC0a@bdbbogxnphqzfsv-mongodb.services.clever-cloud.com:27017/bdbbogxnphqzfsv'
   },
 
   /***************************************************************************
