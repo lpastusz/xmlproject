@@ -70,11 +70,11 @@ module.exports.connections = {
 
   mongodbRemoteServer: {
             adapter: 'sails-mongo',
-            host: 'ds054118.mongolab.com',
-            port: 54118,
-            user: 'webserver2',
-            password: '123456password',
-            database: 'prototype-ecommerce'
+            host: 'bdbbogxnphqzfsv-mongodb.services.clever-cloud.com',
+            port: 27017,
+            user: 'uwequgx7u0jqwfo',
+            password: 'o6vdftXBfllxDcUEjC0a',
+            database: 'bdbbogxnphqzfsv'
   },
 
   /***************************************************************************
