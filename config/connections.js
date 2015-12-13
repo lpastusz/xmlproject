@@ -92,7 +92,8 @@ module.exports.connections = {
     user: 'mkvvqopljfxvxx',
     port: 5432,
     password: 'OQt5SB5cYYGdrxD1nI1Y_RTs4z',
-    database: 'ddacpctkht8p4i'
+    database: 'ddacpctkht8p4i',
+    ssl: true
   }
 
 
