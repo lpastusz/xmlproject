@@ -48,6 +48,8 @@ module.exports.connections = {
     database: 'YOUR_MYSQL_DB'
   },
 
+
+
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
@@ -86,10 +88,11 @@ module.exports.connections = {
   ***************************************************************************/
   somePostgresqlServer: {
     adapter: 'sails-postgresql',
-    host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
-    user: 'YOUR_POSTGRES_USER',
-    password: 'YOUR_POSTGRES_PASSWORD',
-    database: 'YOUR_POSTGRES_DB'
+    host: 'ec2-54-204-35-207.compute-1.amazonaws.com',
+    user: 'mkvvqopljfxvxx',
+    port: 5432,
+    password: 'OQt5SB5cYYGdrxD1nI1Y_RTs4z',
+    database: 'ddacpctkht8p4i'
   }
 
 
