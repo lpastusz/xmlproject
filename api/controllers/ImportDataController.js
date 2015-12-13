@@ -11,7 +11,6 @@ module.exports = {
 
             if (err) { console.log(err); res.view('500'); }
 
-
             ImportDataService.downloadUlozenkaServices(function(err, ulozenkaServicesFeed) {
 
                 if (err) { console.log(err); res.view('500'); }
@@ -39,16 +38,13 @@ module.exports = {
 
                             });
 
+                        });
 
                     });
 
                 });
 
             });
-
-            });
-
-
 
         });
 

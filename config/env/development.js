@@ -18,7 +18,7 @@ module.exports = {
    ***************************************************************************/
 
    models: {
-     connection: 'mongodbRemoteServer'
+     connection: 'mongodbLocalServer'
  },
 
   port: 8080

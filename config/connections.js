@@ -84,13 +84,17 @@ module.exports.connections = {
   ***************************************************************************/
   somePostgresqlServer: {
     adapter: 'sails-postgresql',
-    host: 'ec2-54-204-35-207.compute-1.amazonaws.com',
-    user: 'mkvvqopljfxvxx',
-    port: 5432,
-    password: 'OQt5SB5cYYGdrxD1nI1Y_RTs4z',
-    database: 'ddacpctkht8p4i',
-    ssl: true
-  }
+    url: 'postgresql://ukzmoqqwuzxgsqovphzv:8FNFOjkpC2YpImsT20b5@baqofztfxvvgusy-postgresql.services.clever-cloud.com:5432/baqofztfxvvgusy'
+},
+
+    mySqlServer: {
+        adapter: 'sails-mysql',
+        host: 'bd1f5o28n.mysql.clvrcld.net',
+        port: 3306,
+        user: 'uyxhnsr6xyrbglh2',
+        password: 'BJYvKQhGgASVTNBbaIP',
+        database: 'bd1f5o28n'
+    }
 
 
   /***************************************************************************
